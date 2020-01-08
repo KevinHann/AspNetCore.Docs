@@ -31,9 +31,10 @@ namespace BackgroundTasksSample.Services
         private void DoWork(object state)
         {
             executionCount++;
+            var count = Interlocked.Increment(ref executionCount);
 
             _logger.LogInformation(
-                "Timed Hosted Service is working. Count: {Count}", executionCount);
+                "Timed Hosted Service is working. Count: {Count}", count);
         }
 
         public Task StopAsync(CancellationToken stoppingToken)
